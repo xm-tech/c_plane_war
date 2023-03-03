@@ -1,12 +1,15 @@
 src=main.c
 
-build:
-	gcc -o main $(src)
+MYCFLAGS = -std=c99
+CFLAGS = -W -Wall -Wextra -pedantic -g -O2 $(MYCFLAGS)
 
+build:
+	gcc $(CFLAGS) -o main $(src) -lpthread -lSDL2 -lSDL2main
 run:
+	chmod +x main
 	./main
 
 .PHONLY : clean
 
 clean:
-	- rm -f main
+	- rm -f ./main && rm -rf ./main.dSYM
